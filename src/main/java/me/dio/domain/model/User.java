@@ -13,16 +13,16 @@ public class User {
 
    private String name;
 
-   @OneToOne(cascade = CascadeType.ALL)
+   @OneToOne(fetch= FetchType.LAZY)
    private Account account;
 
    @OneToOne
    private Card card;
 
-   @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+   @OneToMany(fetch= FetchType.LAZY)
    private List<Feature> features;
 
-   @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+   @OneToMany(fetch= FetchType.LAZY)
    private List<News> news;
 
    public User(Long id, String name, Account account, Card card, List<Feature> features, List<News> news) {
