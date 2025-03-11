@@ -18,14 +18,28 @@ repositories {
 }
 
 dependencies {
+	// Dependências essenciais
 	implementation("org.springframework.boot:spring-boot-starter-data-jpa")
 	implementation("org.springframework.boot:spring-boot-starter-web")
-	runtimeOnly("com.h2database:h2")
-	//OpenAPI (Swagger) https://github.com/springdoc/springdoc-openapi
 	implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.2.0")
+	implementation("org.hibernate.validator:hibernate-validator")
+	implementation("jakarta.annotation:jakarta.annotation-api")
+
+	// Driver do PostgreSQL
 	runtimeOnly("org.postgresql:postgresql")
+
+	runtimeOnly ("com.h2database:h2")
+
+	// Dependências de teste
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
+	testImplementation("com.h2database:h2") // Para uso durante testes apenas
 	testRuntimeOnly("org.junit.platform:junit-platform-launcher")
+}
+
+tasks.jar {
+	manifest {
+		attributes["Main-Class"] = "me.dio.DecolaTech2025Application"
+	}
 }
 
 tasks.withType<Test> {

@@ -13,4 +13,7 @@ public class Feature extends BaseItem {
    }
 
 
+   public Feature() {
+      super();
+   }
 }

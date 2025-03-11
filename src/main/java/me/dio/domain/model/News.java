@@ -10,4 +10,8 @@ public class News extends BaseItem {
       this.setIcon(icon);
       this.setDescription(description);
    }
+
+   public News() {
+      super();
+   }
 }

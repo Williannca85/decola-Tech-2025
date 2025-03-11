@@ -7,7 +7,7 @@ spring:
     show-sql: true
     open-in-view: false
     hibernate:
-      ddl-auto: create # validate | update | create | create-drop
+      ddl-auto: create-drop # validate | update | create | create-drop
     properties:
       hibernate:
         format_sql: true
@@ -18,4 +18,9 @@ spring:
     settings:
       trace: false
       web-allow-others: false
+  springdoc:
+    api-docs:
+      enabled: false
+    swagger-ui:
+      path: /swagger-ui.html
 

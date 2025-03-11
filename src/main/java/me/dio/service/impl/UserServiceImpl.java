@@ -1,9 +1,11 @@
 package me.dio.service.impl;
 
 
+import me.dio.controller.exception.GlobalExceptionHandler;
 import me.dio.domain.model.*;
 import me.dio.domain.repository.*;
 import me.dio.service.UserService;
+import org.hibernate.Hibernate;
 import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
@@ -36,13 +38,22 @@ public class UserServiceImpl implements UserService {
 
 
    @Override
-   public User findById(Long id) {
-      return userRepository.findById(id).orElseThrow(NoSuchElementException::new);
+   public User findById(Long id) throws NoSuchElementException {
+      User user = userRepository.findById(id).orElseThrow(NoSuchElementException::new);
+      if (user.getAccount() != null) {
+         // Ensure account is loaded
+         Hibernate.initialize(user.getAccount());
+      }
+      if (user.getCard() != null) {
+         // Ensure card is loaded
+         Hibernate.initialize(user.getCard());
+      }
+      return user;
    }
 
 
    @Override
-   public User create(User userToCreate) {
+   public User create(User userToCreate) throws IllegalArgumentException {
       if (userRepository.existsByAccountNumber(userToCreate.getAccount().getNumber())) {
          throw new IllegalArgumentException("User with account number " + userToCreate.getAccount().getNumber() + " already exists");
       }

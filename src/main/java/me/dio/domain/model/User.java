@@ -25,6 +25,10 @@ public class User {
    @OneToMany(fetch= FetchType.LAZY)
    private List<News> news;
 
+   // Default constructor
+   public User() {
+   }
+
    public User(Long id, String name, Account account, Card card, List<Feature> features, List<News> news) {
       this.id = id;
       this.name = name;

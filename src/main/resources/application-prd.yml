@@ -1,0 +1,32 @@
+spring:
+  ##postgresql://postgres:UfjnImpAczxYdxnhDjlStxauWqcYFiSb@postgres.railway.internal:5432/railway
+  datasource:
+    url: jdbc:postgresql://${PGHOST}:${PGPORT}/${PGDATABASE}
+    username: ${PGUSER}
+    password: ${PGPASSWORD}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: create
+      dialect: org.hibernate.dialect.PostgreSQLDialect
+    properties:
+      hibernate.transaction.jta.platform: org.springframework.boot.orm.jpa.hibernate.SpringJtaPlatform
+  profiles:
+    active: prd
+
+logging:
+  level:
+    root: INFO
+    org.springframework: DEBUG
+    com.zaxxer.hikari: DEBUG
+  pattern:
+    console: '%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n'
+    file: '%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n'
+
+info:
+  app:
+    name: DecolaTech2025
+    description: Aplicativo de exemplo
+    version: 1.0.0
+
